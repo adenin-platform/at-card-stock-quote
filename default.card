@@ -18,9 +18,9 @@ properties:
       <div class="container layout-horizontal m pb">
       	<div id="trend" class="pxsm">
           {% if quote.change > 0 %} <!--green-->
-      		<iron-image sizing="cover" src="{{ '/stock-quote/Stock_up.svg' | component_url }}" style="width: 14px; height:36px;"></iron-image>
+          <iron-image sizing="cover" src="{{ '/stock-quote/Stock_up.svg' | component_url }}" style="width: 14px; height:36px;"></iron-image>
           {% elsif quote.change < 0 %} <!--red-->
-      		<iron-image sizing="cover" src="{{ '/stock-quote/Stock_down.svg' | component_url }}" style="width: 14px; height:36px;"></iron-image>
+          <iron-image sizing="cover" src="{{ '/stock-quote/Stock_down.svg' | component_url }}" style="width: 14px; height:36px;"></iron-image>
           {% else %} <!--grey-->
           <!--<at-carbon-icon class="grey" icon="now:horizontal-line" width="36px" height="14px" style="position: relative; top: 2px;"></at-carbon-icon>-->
           {% endif %}
