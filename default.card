@@ -72,9 +72,9 @@ $meta:
   code: |-
     action.initialize = function (evt) {
       window.setInterval(function () {
-      	evt.connector.post({
-        	args: {
-          	atAgentAction: "refresh"
+        evt.connector.post({
+          args: {
+            atAgentAction: "refresh"
           }
         });
       }.bind(this), 300000);
