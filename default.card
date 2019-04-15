@@ -1,0 +1,81 @@
+$type: card
+rules: []
+properties:
+  title:
+    type: element
+    xtype: at-carbon-card-title
+    title: title
+    xgridcols: 12
+    xstyle: 
+    xclass: 
+    actionListeners:
+      - _start
+  content:
+    type: element
+    xtype: at-core-view
+    model: 
+    view: |
+      <div class="container layout-horizontal m pb">
+        <div id="trend" class="pxsm">
+        	{% if quote.change > 0 %} <!--green-->
+        	<iron-image sizing="cover" src="{{ '/cisco-stock-v2/Stock_up.svg' | component_url }}" style="width: 14px; height:36px;"></iron-image>
+      		{% elsif quote.change < 0 %} <!--red-->
+        	<iron-image sizing="cover" src="{{ '/cisco-stock-v2/Stock_down.svg' | component_url }}" style="width: 14px; height:36px;"></iron-image>
+        	{% else %} <!--grey-->
+        	<!--<at-carbon-icon class="grey" icon="now:horizontal-line" width="36px" height="14px" style="position: relative; top: 2px;"></at-carbon-icon>-->
+         	{% endif %}
+        </div>
+        <div class="layout-vertical"> 
+        	<div class="layout-horizontal">
+        		<div class="mlsm mr"><span class="font-headline secondary font-bold" style="">{{ quote.symbol }}</span></div>
+        		<div class="layout-flex layout-self-end desktop-only">
+        			<span class="mrsm font-title text-primary">{{ quote.latestPrice }}</span>
+          		{% if quote.change > 0 %} <!--green-->
+          		<span class="font-title green">{{ quote.change }} ({{ quote.changePercent }}%)</span>
+      				{% elsif quote.change < 0 %} <!--red-->
+        			<span class="font-title red">{{ quote.chang e}} ({{ quote.changePercent }}%)</span>
+          		{% else %} <!--grey-->
+        			<span class="font-title text-secondary">{{ quote.change }} ({{ quote.changePercent }}%)</span>
+         			{% endif %}
+        		</div>
+        		<div class="layout-flex layout-self-end mobile-only">
+        			<span class="mrsm font-subhead text-primary">{{ quote.latestPrice }}</span>
+          		{% if quote.change > 0 %} <!--green-->
+          		<span class="font-subhead green">{{ quote.change }} ({{ quote.changePercent }}%)</span>
+      				{% elsif quote.change < 0 %} <!--red-->
+        			<span class="font-subhead red">{{ quote.change }} ({{ quote.changePercent }}%)</span>
+        			{% else %} <!--grey-->
+        			<span class="font-subhead text-secondary">{{ quote.change }} ({{ quote.changePercent }}%)</span>
+         			{% endif %}
+        		</div>
+        	</div>
+        <at-carbon-moment class="mlsm text-secondary font-caption" datetime="{{ quote.date }}" from-now auto-refresh></at-carbon-moment>
+        </div>
+      </div>
+    xgridcols: 12
+    xstyle: 
+    xclass: 
+    actionListeners: []
+    default: 
+$meta:
+  cardId: !!int 15
+  preview-data: |-
+    {
+      "origin": "88.65.253.122"
+    }
+  preview-mode: live
+  preview-container: event
+  search-term: 
+  service-url: 
+  xclass: 
+  xstyle: 
+  code: |-
+    action.initialize = function (evt) {
+      window.setInterval(function () {
+      	evt.connector.post({
+        	args: {
+          	atAgentAction: "refresh"
+          }
+        });
+      }.bind(this), 300000);
+    }
