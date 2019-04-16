@@ -17,9 +17,13 @@ properties:
     view: |
       <div class="container layout-horizontal m pb">
       	<div id="trend" class="pxsm">
-          {% if quote.change > 0 %} <!--green-->
-          <iron-image sizing="cover" src="{{ '/stock-quote/Stock_up.svg' | component_url }}" style="width: 14px; height:36px;"></iron-image>
-          {% elsif quote.change < 0 %} <!--red-->
+      		{% if quote.change > 0 %} <!--green-->
+      		<iron-image sizing="cover" src="{{ '/stock-quote/Stock_up.svg' | component_url }}" style="width: 14px; height:36px;"></iron-image>
+      		{% elsif quote.change < 0 %} <!--red-->
+      		<iron-image sizing="cover" src="{{ '/stock-quote/Stock_down.svg' | component_url }}" style="width: 14px; height:36px;"></iron-image>
+      		{% elsif quote.extendedChange > 0 %} <!--green-->
+      		<iron-image sizing="cover" src="{{ '/stock-quote/Stock_up.svg' | component_url }}" style="width: 14px; height:36px;"></iron-image>
+          {% elsif quote.extendedChange < 0 %} <!--red-->
           <iron-image sizing="cover" src="{{ '/stock-quote/Stock_down.svg' | component_url }}" style="width: 14px; height:36px;"></iron-image>
           {% else %} <!--grey-->
           <!--<at-carbon-icon class="grey" icon="now:horizontal-line" width="36px" height="14px" style="position: relative; top: 2px;"></at-carbon-icon>-->
@@ -30,22 +34,26 @@ properties:
             <div class="mlsm mr"><span class="font-headline secondary font-bold" style="">{{ quote.symbol }}</span></div>
             <div class="layout-flex layout-self-end desktop-only">
               <span class="mrsm font-title text-primary">{{ quote.latestPrice }}</span>
-              {% if quote.change > 0 %} <!--green-->
+      				{% if quote.change > 0 %} <!--green-->
               <span class="font-title green">{{ quote.change }} ({{ quote.changePercent }}%)</span>
               {% elsif quote.change < 0 %} <!--red-->
-              <span class="font-title red">{{ quote.chang e}} ({{ quote.changePercent }}%)</span>
+              <span class="font-title red">{{ quote.change }} ({{ quote.changePercent }}%)</span>
+              {% elsif quote.extendedChange > 0 %} <!--green-->
+              <span class="font-title green">{{ quote.extendedChange }} ({{ quote.extendedChangePercent }}%)</span>
+              {% elsif quote.extendedChange < 0 %} <!--red-->
+              <span class="font-title red">{{ quote.extendedChange }} ({{ quote.extendedChangePercent }}%)</span>
               {% else %} <!--grey-->
-              <span class="font-title text-secondary">{{ quote.change }} ({{ quote.changePercent }}%)</span>
+              <span class="font-title text-secondary">{{ quote.extendedChange }} ({{ quote.extendedChangePercent }}%)</span>
               {% endif %}
             </div>
             <div class="layout-flex layout-self-end mobile-only">
               <span class="mrsm font-subhead text-primary">{{ quote.latestPrice }}</span>
-              {% if quote.change > 0 %} <!--green-->
-              <span class="font-subhead green">{{ quote.change }} ({{ quote.changePercent }}%)</span>
-              {% elsif quote.change < 0 %} <!--red-->
-              <span class="font-subhead red">{{ quote.change }} ({{ quote.changePercent }}%)</span>
+              {% if quote.extendedChange > 0 %} <!--green-->
+              <span class="font-subhead green">{{ quote.extendedChange }} ({{ quote.extendedChangePercent }}%)</span>
+              {% elsif quote.extendedChange < 0 %} <!--red-->
+              <span class="font-subhead red">{{ quote.extendedChange }} ({{ quote.extendedChangePercent }}%)</span>
               {% else %} <!--grey-->
-              <span class="font-subhead text-secondary">{{ quote.change }} ({{ quote.changePercent }}%)</span>
+              <span class="font-subhead text-secondary">0 (0%)</span>
               {% endif %}
             </div>
           </div>
@@ -55,13 +63,57 @@ properties:
     xgridcols: 12
     xstyle: 
     xclass: 
-    actionListeners: []
+    actionListeners:
+      - _all
     default: 
+    modelRoot: state.model
 $meta:
   cardId: !!int 15
   preview-data: |-
     {
-      "origin": "88.65.253.122"
+      "quote": {
+        "symbol": "CSCO",
+        "companyName": "Cisco Systems Inc.",
+        "primaryExchange": "Nasdaq Global Select",
+        "sector": "Technology",
+        "calculationPrice": "previousclose",
+        "open": 56.4,
+        "openTime": 1555335000398,
+        "close": 56.56,
+        "closeTime": 1555358400553,
+        "high": 56.61,
+        "low": 56.235,
+        "latestPrice": 56.56,
+        "latestSource": "Previous close",
+        "latestTime": "April 15, 2019",
+        "latestUpdate": 1555286400000,
+        "latestVolume": 29852,
+        "iexRealtimePrice": 0,
+        "iexRealtimeSize": 0,
+        "iexLastUpdated": 0,
+        "delayedPrice": 56.56,
+        "delayedPriceTime": 1555358400553,
+        "extendedPrice": 56.65,
+        "extendedChange": 0.09,
+        "extendedChangePercent": 0.00159,
+        "extendedPriceTime": 1555419338723,
+        "previousClose": 56.56,
+        "change": 0,
+        "changePercent": 0,
+        "iexMarketPercent": 0,
+        "iexVolume": 0,
+        "avgTotalVolume": 18699508,
+        "iexBidPrice": 0,
+        "iexBidSize": 0,
+        "iexAskPrice": 0,
+        "iexAskSize": 0,
+        "marketCap": 248978687617,
+        "peRatio": 22.53,
+        "week52High": 56.61,
+        "week52Low": 40.25,
+        "ytdChange": 0.33548042822264945,
+        "date": "2019-04-15T00:00:00.000Z"
+      }
     }
   preview-mode: live
   preview-container: event

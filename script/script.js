@@ -8,7 +8,7 @@ module.exports = async (activity) => {
     const response = await got(`https://api.iextrading.com/1.0/stock/${symbol}/batch?types=quote`);
     const data = JSON.parse(response.body);
 
-    data.quote.date = (new Date(data.quote.iexLastUpdated)).toISOString();
+    data.quote.date = (new Date(data.quote.latestUpdate)).toISOString();
 
     activity.Response.Data = data;
   } catch (error) {
