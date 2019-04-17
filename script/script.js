@@ -4,7 +4,7 @@ const got = require('got');
 
 module.exports = async (activity) => {
   try {
-    const symbol = 'CSCO'; // replace with desired company's stock symbol
+    const symbol = 'MSFT'; // replace with desired company's stock symbol
     const response = await got(`https://api.iextrading.com/1.0/stock/${symbol}/batch?types=quote`);
     const data = JSON.parse(response.body);
 

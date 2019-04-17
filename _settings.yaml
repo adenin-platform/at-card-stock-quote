@@ -6,12 +6,12 @@ UserActions:
   maxItems: !!int 3
   pinnable: !!bool true
 title: Stock
-name: stock-quote
+name: at-card-stock-quote
 CollectionModeField: null
 MaxItemsField: null
 PriorityField: null
 StreamSource: null
-CardComponent: stock-quote/stock-quote-card
+CardComponent: at-card-stock-quote/at-card-stock-quote-card
 StoreMetadataField: null
 CommonPart:
   Owner: !!int 2

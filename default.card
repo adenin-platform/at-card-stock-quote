@@ -57,7 +57,7 @@ properties:
               {% endif %}
             </div>
           </div>
-          <at-carbon-moment class="mlsm text-secondary font-caption" datetime="{{ quote.date }}" from-now auto-refresh></at-carbon-moment>
+          <at-carbon-moment class="mlsm text-secondary font-caption" datetime="{{ quote.date }}" from-now ago auto-refresh></at-carbon-moment>
         </div>
       </div>
     xgridcols: 12

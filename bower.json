@@ -1,6 +1,6 @@
 {
-  "name": "stock-quote",
-  "version": "0.0.1.40",
+  "name": "at-card-stock-quote",
+  "version": "0.0.1.46",
   "private": true,
   "dependencies": {
     "polymer": "Polymer/polymer#master"
